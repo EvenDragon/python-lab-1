@@ -1,0 +1,4 @@
+NUMBERS = '0123456789'
+OPERATORS = '*/+-'
+LHOOK = '('
+RHOOK = ')'
