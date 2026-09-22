@@ -1,30 +1,41 @@
-from constants import OPERATORS
+from toolkit import errors
+from toolkit.constants import OPERATORS
+
 
 def add_op(a, b):
-    return float(a)+float(b)
+    return float(a) + float(b)
+
+
 def sub_op(a, b):
-    return float(a)-float(b)
+    return float(a) - float(b)
+
+
 def mult_op(a, b):
-    return float(a)*float(b)
+    return float(a) * float(b)
+
+
 def div_op(a, b):
-    return float(a)/float(b)
+    if float(b) == 0:
+        errors.throw_division_by_zero()
+    else:
+        return float(a) / float(b)
+
 
 def calculate(expr: list):
-    while len(expr)>1:
+    while len(expr) > 1:
         for i in range(len(expr)):
             if str(expr[i]) in OPERATORS:
+                a, b, op = expr[i - 2], expr[i - 1], expr[i]
 
-                a,b, op = expr[i-2], expr[i-1], expr[i]
-
-                if op == '+':
+                if op == "+":
                     expr[i] = add_op(a, b)
-                elif op == '-':
+                elif op == "-":
                     expr[i] = sub_op(a, b)
-                elif op == '*':
+                elif op == "*":
                     expr[i] = mult_op(a, b)
-                elif op == '/':
+                elif op == "/":
                     expr[i] = div_op(a, b)
 
-                expr = expr[:i-2] + expr[i:]
+                expr = expr[: i - 2] + expr[i:]
                 break
     return expr[0]
