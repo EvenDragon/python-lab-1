@@ -1,22 +1,27 @@
 from constants import NUMBERS, OPERATORS, LHOOK, RHOOK
 import re
+import errors
 
-def checkPriority(a,b):
+def check_priority(a, b):
     """If op a's priority is higher or equal than op b return True"""
     return not((a==LHOOK) or (a==RHOOK)) and (OPERATORS.index(b) >= OPERATORS.index(a))
 
-def tokenize( expr):
-
-    # Removing horrible + and -
+def tokenize_for_calculation(expr) -> list:
+    """
+    Tokenize entered expression and return list in postfix notation
+    """
+    # Removing unary + and -
     expr = ' ' + expr
     expr = re.sub(r'([^0-9)])[+]', r'\1',expr)
     expr = re.sub(r'([^0-9])[-](\d(\.\d+)?)', r'\1(0-\2)',expr)
 
-
     postfix_expr = []
     operators = []
     is_float_now = False
-    for i in expr:
+
+    #Shunting yard algorithm
+    for index_i in range(len(expr)):
+        i = expr[index_i]
         if i == ' ':
             continue
 
@@ -25,17 +30,17 @@ def tokenize( expr):
             postfix_expr[-1] += '.'
 
         elif i in NUMBERS:
-            if not is_float_now:
-                postfix_expr += i
-            else:
+            if is_float_now or expr[index_i-1] in NUMBERS:
                 postfix_expr[-1] += i
+            else:
+                postfix_expr += i
 
         else:
             if is_float_now:
                 is_float_now = False
 
             if i in OPERATORS:
-                while len(operators)>0 and checkPriority(operators[-1],i):
+                while len(operators)>0 and check_priority(operators[-1], i):
                     postfix_expr += operators.pop()
                 operators.append(i)
 
@@ -46,13 +51,13 @@ def tokenize( expr):
                 while len(operators) > 0 and operators[-1] != LHOOK:
                     postfix_expr += operators.pop()
                 if len(operators) == 0:
-                    "Выкинуть ошибку"
+                    errors.throw_missing_operand()
                 else:
                     operators.pop()
 
     while len(operators) > 0:
         if operators[-1] == LHOOK:
-            "Выкинуть ошибку"
+            errors.throw_missing_operand()
         postfix_expr += operators.pop()
 
 
