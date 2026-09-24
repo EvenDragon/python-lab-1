@@ -14,8 +14,8 @@ def validate_calc(expr: str) -> bool:
     """
     Return True if no errors detected, in other cases return False
     """
-    double_ops = r"[+/*-]\s*[+/*-]"
-    unexpected_symbols = r"[^0-9\s/*+.-]"
+    double_ops = r"[+/*-]\s*[/*]"
+    unexpected_symbols = r"[^0-9\s/*+.()-]"
     expr = expr.strip()
     if len(expr) == 0:
         errors.throw_empty_expression()

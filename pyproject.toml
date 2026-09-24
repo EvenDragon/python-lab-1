@@ -14,3 +14,8 @@ dev = [
     "ruff>=0.16.8",
 ]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
