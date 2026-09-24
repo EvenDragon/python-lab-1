@@ -15,7 +15,9 @@ def validate_calc(expr: str) -> bool:
     Return True if no errors detected, in other cases return False
     """
     double_ops = r"[+/*-]\s*[/*]"
+    missing_operator = r"[+/*-][)\s]"
     unexpected_symbols = r"[^0-9\s/*+.()-]"
+
     expr = expr.strip()
     if len(expr) == 0:
         errors.throw_empty_expression()
@@ -25,6 +27,9 @@ def validate_calc(expr: str) -> bool:
 
     elif len(re.findall(unexpected_symbols, expr)):
         errors.throw_unexpected_symbol()
+
+    elif len(re.findall(missing_operator, expr + ' ')):
+        errors.throw_missing_operand()
 
     else:
         return True

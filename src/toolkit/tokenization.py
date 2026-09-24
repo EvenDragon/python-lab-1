@@ -21,7 +21,7 @@ def tokenize_for_calculation(expr) -> list:
     while len(re.findall(r"-\s*-", expr))>0:  #changing all "--" to ""
         expr = re.sub(r"-\s*-", r"", expr)
 
-    expr = re.sub(r"([^0-9])[-](\d(\.\d+)?)", r"\1(0-\2)", expr)  #turning unary - into 0-
+    expr = re.sub(r"([^0-9])[-](\d+(\.\d+)?)", r"\1(0-\2)", expr)  #turning unary - into 0-
 
     postfix_expr = []
     operators = []

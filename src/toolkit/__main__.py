@@ -29,6 +29,9 @@ def convert(value: float, unit1: str, unit2: str):
     """
     Convert "Value from UNIT to UNIT"
     Can convert lenth, mass, temp
+    mm, cm, m, km
+    g, kg
+    c, f, k
     """
     print(_convert(value,unit1,unit2))
 
