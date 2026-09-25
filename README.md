@@ -7,6 +7,7 @@ This is my first python project. It is a CLI program that can calculate expressi
 * typer
 * editable mode in uv
 
+
 ## How to use it
 
 Program can recognize following commands:
@@ -17,11 +18,13 @@ Program can recognize following commands:
    
    `python3 -m toolkit --help`
 
+
 ### Examples
 
    `python3 -m toolkit calc "(6-5.3)*-17"`
 
    `python3 -m toolkit convert 36.6 c f`
+
 
 ### Converter limits
 
@@ -32,6 +35,7 @@ Converter can operate with length, mass and temperature units. Specifically with
    + Mass: g, kg
 
    + Temp:
+
 
 ### Few words about calculation and tokenization
 
