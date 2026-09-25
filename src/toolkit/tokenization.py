@@ -17,11 +17,11 @@ def tokenize_for_calculation(expr) -> list:
     """
     # Removing unary + and -
     expr = " " + expr
-    expr = re.sub(r"([^0-9)])[+]", r"\1", expr)  #removing +
-    while len(re.findall(r"-\s*-", expr))>0:  #changing all "--" to ""
-        expr = re.sub(r"-\s*-", r"", expr)
+    f_digit = r'(\d+(\.\d+)?)'
 
-    expr = re.sub(r"([^0-9])[-](\d+(\.\d+)?)", r"\1(0-\2)", expr)  #turning unary - into 0-
+    expr = re.sub(r"([^0-9\s)])\s*[+]", r"\1", expr)  #removing +
+    expr = re.sub(r"(-\s*-\s*)+", r"", expr)     #changing all "--" to ""
+    expr = re.sub(rf"([^0-9])[-]({f_digit})", r"\1(0-\2)", expr)  #turning unary - into 0-
 
     postfix_expr = []
     operators = []

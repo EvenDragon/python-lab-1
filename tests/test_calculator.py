@@ -1,12 +1,14 @@
 import pytest
+
 from toolkit import __main__
+
 
 def test_calc1():
     res = __main__._calc("29+6")
     assert res == 35
 
 def test_calc2():
-    res = __main__._calc(" 10-4")
+    res = __main__._calc(" 10 - 4")
     assert res == 6
 
 def test_calc3():

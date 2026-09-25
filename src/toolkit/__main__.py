@@ -1,8 +1,6 @@
-from toolkit import calculator
-from toolkit import converter
-from toolkit import tokenization
 import typer
-from toolkit import validation
+
+from toolkit import calculator, converter, tokenization, validation
 
 app = typer.Typer()
 

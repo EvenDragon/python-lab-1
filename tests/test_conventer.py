@@ -1,5 +1,7 @@
 import pytest
+
 from toolkit import __main__
+
 
 def test_converter_1():
     res = __main__._convert(36.6, 'c', 'f')
