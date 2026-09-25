@@ -4,7 +4,7 @@ from toolkit import errors
 from toolkit.constants import LHOOK, NUMBERS, OPERATORS, RHOOK
 
 
-def check_priority(a, b):
+def check_priority(a, b) -> bool:
     """If op a's priority is higher or equal than op b return True"""
     return not ((a == LHOOK) or (a == RHOOK)) and (
         OPERATORS.index(b) >= OPERATORS.index(a)

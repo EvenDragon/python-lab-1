@@ -11,7 +11,7 @@ def _calc(expression: str) -> str:
         calculated_answer = calculator.calculate(tokenized_expr)
         return calculated_answer
 
-def _convert(value: float, unit1: str, unit2: str):
+def _convert(value: float, unit1: str, unit2: str) -> float:
     "Local func that return result of all operations"
     if validation.validate_convert(value, unit1, unit2):
         converted_answer = converter.convert(value, unit1, unit2)
@@ -23,7 +23,7 @@ def calc(expression: str) -> None:
     print(_calc(expression))
 
 @app.command(context_settings={"ignore_unknown_options": True})
-def convert(value: float, unit1: str, unit2: str):
+def convert(value: float, unit1: str, unit2: str) -> None:
     """
     Convert "Value from UNIT to UNIT"
     Can convert lenth, mass, temp

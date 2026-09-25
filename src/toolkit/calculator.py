@@ -21,7 +21,8 @@ def div_op(a, b):
         return float(a) / float(b)
 
 
-def calculate(expr: list):
+def calculate(expr: list) -> str:
+    """Calculate list of operators in RPN and return result"""
     while len(expr) > 1:
         for i in range(len(expr)):
             if str(expr[i]) in OPERATORS:

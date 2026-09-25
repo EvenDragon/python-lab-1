@@ -33,16 +33,19 @@ def convert(value: float, unit1: str, unit2: str) -> float:
         )
 
     elif unit1 in TempUnits and unit2 in TempUnits:
+        #Celcius in kelvin and backwards
         if unit1 == TempUnits.celsius.value and unit2 == TempUnits.kelvin.value:
             return value + KELVIN_CELSIUS_DIFF
         elif unit1 == TempUnits.kelvin.value and unit2 == TempUnits.celsius.value:
             return value - KELVIN_CELSIUS_DIFF
 
+        #Celcius in fahrenheit and backwards
         if unit1 == TempUnits.celsius.value and unit2 == TempUnits.fahrenheit.value:
             return (value * CELSIUS_FAHRENHEIT_MULT) + CELSIUS_FAHRENHEIT_ADD
         elif unit1 == TempUnits.fahrenheit.value and unit2 == TempUnits.celsius.value:
             return (value - CELSIUS_FAHRENHEIT_ADD) / CELSIUS_FAHRENHEIT_MULT
 
+        #Kelvin in fahrenheit and backwards
         if unit1 == TempUnits.kelvin.value and unit2 == TempUnits.fahrenheit.value:
             return (
                 (value - KELVIN_CELSIUS_DIFF) * CELSIUS_FAHRENHEIT_MULT
